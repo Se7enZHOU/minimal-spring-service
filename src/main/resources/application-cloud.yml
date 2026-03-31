@@ -1,0 +1,7 @@
+spring:
+  config:
+    activate:
+      on-profile: cloud
+
+app:
+  message: ${APP_MESSAGE:Hello from Kubernetes}
