@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: your-registry/minimal-spring-service:0.0.1-SNAPSHOT
+          image: minimal-spring-service:0.0.1-SNAPSHOT
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
