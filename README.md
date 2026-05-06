@@ -9,6 +9,41 @@ A minimal Spring Boot project that can run locally with a `dev` profile and depl
 - Docker
 - kubectl
 
+## Start MySQL locally
+
+Run MySQL with Docker Compose:
+
+```bash
+docker compose up -d mysql
+```
+
+Check status:
+
+```bash
+docker compose ps
+docker compose logs -f mysql
+```
+
+The local MySQL instance uses:
+
+- Host: `localhost`
+- Port: `3306`
+- Database: `minimal_service`
+- Username: `appuser`
+- Password: `appsecret`
+
+Stop MySQL:
+
+```bash
+docker compose down
+```
+
+If you want to remove the database data as well:
+
+```bash
+docker compose down -v
+```
+
 ## Run locally
 
 Use IntelliJ IDEA to run `MinimalSpringApplication` with the active profile set to `dev`, or run:
@@ -25,6 +60,14 @@ mvn spring-boot:run
 ```
 
 Open [http://localhost:8080/api/hello](http://localhost:8080/api/hello) to verify the app is running.
+
+If MySQL is running locally, you can also verify the database connection:
+
+```bash
+curl http://localhost:8080/api/db/ping
+```
+
+The response includes the database product name, JDBC URL, and a simple validation query result.
 
 ## Build the jar
 

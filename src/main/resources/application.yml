@@ -1,6 +1,13 @@
 spring:
   application:
     name: minimal-spring-service
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/minimal_service?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai}
+    username: ${DB_USERNAME:appuser}
+    password: ${DB_PASSWORD:appsecret}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      initialization-fail-timeout: 0
 
 server:
   port: ${SERVER_PORT:8080}
@@ -15,6 +22,7 @@ management:
     health:
       probes:
         enabled: true
+      show-details: always
 
 app:
   message: Hello from the default profile
