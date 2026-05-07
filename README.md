@@ -105,6 +105,22 @@ docker build -t minimal-spring-service:0.0.1-SNAPSHOT .
 docker run --rm -p 8080:8080 -e SPRING_PROFILES_ACTIVE=cloud -e APP_MESSAGE="Hello from Docker" minimal-spring-service:0.0.1-SNAPSHOT
 ```
 
+## GitHub CD
+
+The repository includes a CD workflow at `.github/workflows/cd.yml`.
+
+When you push to `main` or `feature-k8s`, or run it manually from the GitHub Actions page, it will:
+
+- run `mvn -B test`
+- build the Docker image
+- push the image to GitHub Container Registry (`ghcr.io`)
+
+Example image names:
+
+- `ghcr.io/se7enzhou/minimal-spring-service:feature-k8s`
+- `ghcr.io/se7enzhou/minimal-spring-service:sha-<commit>`
+- `ghcr.io/se7enzhou/minimal-spring-service:latest` for `main`
+
 ## Deploy to Kubernetes
 
 1. Build the image and push it to your image registry.
