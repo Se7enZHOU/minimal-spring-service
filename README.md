@@ -69,6 +69,29 @@ curl http://localhost:8080/api/db/ping
 
 The response includes the database product name, JDBC URL, and a simple validation query result.
 
+The app also creates a sample `note` table on startup and exposes a minimal CRUD API:
+
+```bash
+curl -X POST http://localhost:8080/api/notes \
+  -H "Content-Type: application/json" \
+  -d '{"title":"First note","content":"Created locally"}'
+```
+
+```bash
+curl http://localhost:8080/api/notes
+curl http://localhost:8080/api/notes/1
+```
+
+```bash
+curl -X PUT http://localhost:8080/api/notes/1 \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Updated note","content":"Updated content"}'
+```
+
+```bash
+curl -X DELETE http://localhost:8080/api/notes/1
+```
+
 ## Build the jar
 
 ```bash
